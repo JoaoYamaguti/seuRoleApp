@@ -2,33 +2,34 @@ import React from "react";
 import { View, Text, StatusBar, StyleSheet, Button, Pressable } from "react-native";
 import Icon from "react-native-vector-icons/Feather";
 import { useNavigation } from "@react-navigation/native";
+import { LinearGradient } from 'expo-linear-gradient'
 
 import { FrameTopBar } from "../../components/FrameTopBar";
-import { PressStart, TextHome, ViewHome, ViewLogo, ViewStart} from "./styled";
+import { PressStart, TextHome, ViewHome, ViewLogo, TextStart} from "./styled";
 import { PressedText } from "../Questions/styled";
 
 export function Home() {
     const navigation = useNavigation()
     return (
             <ViewHome >
-                <FrameTopBar></FrameTopBar>
+                <LinearGradient colors={['#54728C', '#2A3E59']} style={{ position: 'absolute', left: 0,right: 0, top: 0, height: '100%',}}/>
 
-                {/* <Questions /> */}
+                <FrameTopBar></FrameTopBar>
                 
                     <ViewLogo>
                         <TextHome>
-                            Seu Role
+                            Seu Rolê
                         </TextHome>
                         <Text>
                             Duvidas na hora de escolher um lugar para sair?
                         </Text>
                         <Text>
-                            Nós de ajudamos
+                            Nós te ajudamos
                         </Text>
                     </ViewLogo>
 
                     <PressStart onPress={() => navigation.navigate('Questions')}>
-                        <PressedText>Vamos Começar <Icon name="chevron-right" size={15} /></PressedText>
+                        <TextStart>Let's Go <Icon name="chevron-right" size={30} style={{margin:'0', padding:'0'}} /></TextStart>
                     </PressStart>
             </ViewHome>
     )

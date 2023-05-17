@@ -1,6 +1,7 @@
 import { React, useState } from "react";
-import { View } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { RadioButton, Text } from 'react-native-paper';
+import styled from "styled-components/native";
 
 export function Options({op1, op2}) {
 
@@ -8,20 +9,28 @@ export function Options({op1, op2}) {
 
     return (
         <RadioButton.Group onValueChange={newValue => setValue(newValue)} value={value}>
-          <View style={{
-            flexDirection:'row',
-            alignItems:'center',
-          }}>
-            <Text>{op1}</Text>
+          <View style={styles.container}>
             <RadioButton value="first" />
+            <Text style={texts}>{op1}</Text>
           </View>
-          <View style={{
-            flexDirection:'row',
-            alignItems:'center',
-          }}>
-            <Text>{op2}</Text>
+          <View style={styles.container}>
             <RadioButton value="second" size={1} />
+            <Text style={texts}>{op2}</Text>
           </View>
         </RadioButton.Group>
     )
 }
+
+const texts = styled.Text`
+font-size: 5%;
+`
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection:'row',
+    alignItems:'center'
+  },
+  texts: {
+    fontSize:40
+  }
+})
