@@ -5,6 +5,7 @@ export const ViewHome = styled.View`
 
     align-items: center;
     justify-content: center;
+
 `
 export const ViewLogo = styled.View`
     flex: 2;
@@ -13,6 +14,8 @@ export const ViewLogo = styled.View`
 `
 
 export const TextHome = styled.Text`
+
+    color: white;
     font-size: 40px;
 
     text-transform: uppercase;
@@ -28,15 +31,17 @@ export const PressStart = styled.Pressable`
 `
 
 export const TextStart = styled.Text`
+    height: 50px;
 
     margin: 0;
     padding: 0;
 
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
     
-    font-size: 22px;
+    font-size: 30px;
     color: white;
     text-align: center;
+    vertical-align: bottom;
 `
 

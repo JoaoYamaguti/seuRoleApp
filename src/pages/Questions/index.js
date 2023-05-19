@@ -1,13 +1,13 @@
-import { React, useState, useEffect } from "react";
-import { View, Text } from "react-native";
+import { React, useState, useEffect, Fragment } from "react";
+import { View, Text, ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 
 import { FrameTopBar } from "../../components/FrameTopBar";
 import { Options } from "../../components/RadioButton";
 
-import { ViewLogo, TextHome } from "../Home/styled.js";
-import { ViewQuestions, PressedNext, PressedText, PressedBack, ViewButtons, TextQuestions, Question, ViewQuestion } from './styled';
+import { ViewQuestions, ViewLogo, PressedNext, PressedText, PressedBack, ViewButtons, TextQuestions, Question, ViewQuestion, ContainerQuestion, TextLogo, BackHome, ViewArticle, Line } from './styled';
+import { colors } from "../../utilities/colors";
 
 import Icon from "react-native-vector-icons/Feather";
 
@@ -69,54 +69,87 @@ export function Questions() {
   const [counter, setCounter] = useState(0)
 
   return (
-    <ViewQuestions>
-      <FrameTopBar></FrameTopBar>
-      
-      <View style={{justifyContent: 'flex-start'}}>
-        <PressedBack onPress={() => navigator.navigate('Home')}>
-          <PressedText><Icon name="chevron-left" size={20}/></PressedText>
-        </PressedBack>
-      </View>
-
+    <>
+      <FrameTopBar color={colors.darkblue}></FrameTopBar>
       <ViewLogo>
-        <TextHome>
+        <BackHome onPress={() => navigator.navigate('Home')}>
+          <PressedText><Icon name="chevron-left" size={40}/></PressedText>
+        </BackHome>
+        <TextLogo>
           Seu Rolê
-        </TextHome>
-        <TextQuestions>
-          Hora de responder algumas perguntas para criarmos um roteiro para seu próximo rolê.
-        </TextQuestions>
+        </TextLogo>
       </ViewLogo>
 
-      <View style={{flex:2, justifyContent:'space-between', alignItems:'center', width:'100%', gap:20}}>
-        <ViewQuestion key={questions[counter].key} >
-          <Question>{questions[counter].question}</Question>
-          <Options op1={questions[counter].options[0]} op2={questions[counter].options[1]}/>
-        </ViewQuestion>
+      <ViewQuestions>
 
-        <ViewButtons>
-          <PressedBack 
-          onPress={() => {
-            if (counter<questions.length && counter>+0) {
-              setCounter(Number(counter - 1))
-            } else {
-            
-            }
-          }}>
-            <PressedText><Icon name="chevron-left" size={20}/></PressedText>
-          </PressedBack>
-          <PressedNext 
-            onPress={() => {
-              if (counter < questions.length - 1) {
-                setCounter(Number(counter + 1))
-              } else {
+        <ViewArticle>
+          <TextQuestions>
+            Hora de responder algumas perguntas para criarmos um roteiro para seu próximo rolê.
+          </TextQuestions>
+        </ViewArticle>
+
+        <ContainerQuestion
+          style={{
+            shadowOpacity: 0.75,
+            shadowRadius: 5,
+            shadowColor: 'black',
+            shadowOffset: { height: 0, width: 0 },
+        }}
+        >
+          <ScrollView showsVerticalScrollIndicator={false}>
+
+            {questions.map(item => {
               
-              }
-          }}>
-            <PressedText>{counter === questions.length-1 ? 'Finalizar': 'Next' }<Icon name="chevron-right" size={30}/></PressedText>
-          </PressedNext>
-        </ViewButtons>
-      </View>
-    </ViewQuestions>
+              return (
+                <Fragment key={item.key}>
+                  <ViewQuestion  >
+                    <Question>{item.question}</Question>
+                    <Options op1={item.options[0]} op2={item.options[1]}/>
+                  </ViewQuestion>
+                  {item.key != questions.length ? <Line></Line> : '' }
+                </Fragment>
+              )
+            })}
+
+              <ViewButtons>
+                <PressedNext>
+                  <PressedText>{counter === questions.length-1 ? 'Finalizar': 'Finalizar' }<Icon name="chevron-right" size={20} /></PressedText>
+                </PressedNext>
+              </ViewButtons>
+            </ScrollView>
+        </ContainerQuestion>
+
+        {/* <ContainerQuestion>
+          <ViewQuestion key={questions[counter].key} >
+            <Question>{questions[counter].question}</Question>
+            <Options op1={questions[counter].options[0]} op2={questions[counter].options[1]}/>
+            </ViewQuestion>
+
+            <ViewButtons>
+              <PressedBack 
+              onPress={() => {
+                if (counter<questions.length && counter>+0) {
+                  setCounter(Number(counter - 1))
+                } else {
+                
+                }
+              }}>
+                <PressedText><Icon name='chevron-left' size={20}/></PressedText>
+              </PressedBack>
+              <PressedNext 
+                onPress={() => {
+                  if (counter < questions.length - 1) {
+                    setCounter(Number(counter + 1))
+                  } else {
+                  
+                  }
+              }}>
+                <PressedText>{counter === questions.length-1 ? 'Finalizar': 'Next' }<Icon name="chevron-right" size={30} /></PressedText>
+              </PressedNext>
+            </ViewButtons>
+        </ContainerQuestion> */}
+
+      </ViewQuestions>
+    </>
   )
 }
-

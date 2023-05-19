@@ -11,19 +11,15 @@ export function Options({op1, op2}) {
         <RadioButton.Group onValueChange={newValue => setValue(newValue)} value={value}>
           <View style={styles.container}>
             <RadioButton value="first" />
-            <Text style={texts}>{op1}</Text>
+            <Text style={''}>{op1}</Text>
           </View>
           <View style={styles.container}>
             <RadioButton value="second" size={1} />
-            <Text style={texts}>{op2}</Text>
+            <Text style={''}>{op2}</Text>
           </View>
         </RadioButton.Group>
     )
 }
-
-const texts = styled.Text`
-font-size: 5%;
-`
 
 const styles = StyleSheet.create({
   container: {
