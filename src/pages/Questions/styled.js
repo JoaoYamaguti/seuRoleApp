@@ -6,7 +6,7 @@ import { colors } from "../../utilities/colors.js";
 export const ViewQuestions = styled.View`
     height: 100%;
     
-    padding: 0px 15px 15px 15px;
+    padding: 0px 15px 0px 15px;
     
     background-color: white;
 `
@@ -38,13 +38,13 @@ export const ViewArticle = styled.View`
     
     flex-flow: row nowrap;
     justify-content: flex-start;
-    gap: 20px;
     
-    margin: 8% 0;
+    margin-top: 8%;
 `
 
 export const TextQuestions = styled.Text`
-    font-size: ${ResponsiveSize(16)}px;
+    font-size: ${ResponsiveSize(20)}px;
+    text-align: justify;
 `
 
 export const Questionary = styled.View`
@@ -71,7 +71,8 @@ export const ViewQuestion = styled.View`
     gap: 20px;
 `
 export const Question = styled.Text`
-    font-size: 20px;
+    font-size: ${ResponsiveSize(20)}px;
+    text-align: justify;
 
 `
 

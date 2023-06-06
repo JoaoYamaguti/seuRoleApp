@@ -1,7 +1,6 @@
 import { React, useState } from "react";
 import { View, StyleSheet } from "react-native";
 import { RadioButton, Text } from 'react-native-paper';
-import styled from "styled-components/native";
 
 export function Options({op1, op2}) {
 

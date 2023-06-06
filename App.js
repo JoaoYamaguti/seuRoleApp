@@ -1,8 +1,6 @@
-import { View } from 'react-native';
-import { Navigation } from "./routes";
+/* eslint-disable react/react-in-jsx-scope */
+import { Navigation } from './routes'
 
-export default function App() {
-  return (
-      <Navigation />
-  );
+export default function App () {
+  return <Navigation />
 }
