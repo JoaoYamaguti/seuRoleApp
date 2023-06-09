@@ -1,28 +1,28 @@
 export const questions = [
   {
     key: 1,
-    category: 'outdoor',
-    question: 'Você prefere atividades:',
-    options: ['Ar Livre', 'Indoor'],
-    answer: 'fdasdf'
+    category: 'groupSize',
+    question: 'Sairá sozinho ou irá com mais pessoas?',
+    options: ['Individual', 'Casal', 'Grupo'],
+    answer: ''
   },
   {
     key: 2,
     category: 'calmdown',
-    question: 'Atividades tranquilas ou agitadas?',
-    options: ['Ar ', 'Indgfgfdgdhdfoor'],
+    question: 'Está preferindo um ambiente:',
+    options: ['Tranquilas', 'musica ambiente', 'Agitado'],
     answer: ''
   },
   {
     key: 3,
-    category: 'nature',
-    question: 'Atividades em meio à natureza ou urbana?',
-    options: ['Natureba', 'Rua'],
+    category: 'budget',
+    question: 'Pretende gastar quanto?',
+    options: ['- R$ 75,00', 'R$ 75 – R$ 200', '+ R$ 200,00'],
     answer: ''
   },
   {
     key: 4,
-    category: 'groupSize',
+    category: 'outdoor',
     question: 'Atividades individuais ou em grupo?',
     options: ['Ar Livre', 'Indoor'],
     answer: ''
@@ -31,21 +31,7 @@ export const questions = [
     key: 5,
     category: 'timeOfDay',
     question: 'Atividades diurnas ou noturnas?',
-    options: ['Ar Livsdfdsfre', 'Inggsdoor'],
-    answer: ''
-  },
-  {
-    key: 6,
-    category: 'crowdedness',
-    question: 'Quantidades de pessoas?',
-    options: ['Muitas pessoas', 'Poucas Pessoas'],
-    answer: ''
-  },
-  {
-    key: 7,
-    category: 'budget',
-    question: 'Quanto você pretende gastar?',
-    options: ['Alto Orçamento', 'Baixo Orçamento'],
+    options: ['Dia', 'Noite'],
     answer: ''
   }
 ]
