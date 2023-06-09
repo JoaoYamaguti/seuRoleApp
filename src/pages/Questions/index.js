@@ -24,7 +24,7 @@ import { colors } from '../../utilities/colors'
 
 import Icon from 'react-native-vector-icons/Feather'
 
-export function Questions () {
+export function Questions() {
   const asks = questions
 
   const navigator = useNavigation()
@@ -58,7 +58,7 @@ export function Questions () {
                 <Fragment key={item.key}>
                   <ViewQuestion>
                     <Question>{item.question}</Question>
-                    <Options op1={item.options[0]} op2={item.options[1]} />
+                    <Options ops={item.options} />
                   </ViewQuestion>
                   {item.key !== questions.length ? <Line></Line> : ''}
                 </Fragment>
