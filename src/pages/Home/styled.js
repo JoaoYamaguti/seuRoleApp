@@ -12,11 +12,10 @@ export const ViewLogo = styled.View`
   align-items: center;
 `
 
-export const TextHome = styled.Text`
-  color: white;
-  font-size: 40px;
+export const ImageHome = styled.Image`
+  height: 300px;
+  resizeMode: contain;
 
-  text-transform: uppercase;
 `
 
 export const PressStart = styled.Pressable`

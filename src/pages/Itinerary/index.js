@@ -1,30 +1,43 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable multiline-ternary */
-import { React, useState } from 'react'
-import { companies } from '../../data/companies'
-import Star from 'react-native-vector-icons/FontAwesome5'
-import {
-  PressableMoreDetails,
-  ScrollItinerary,
-  TextIntroduction,
-  TextMoreDetails,
-  TextStablishment,
-  ViewStablishments,
-  ViewStablishment,
-  Line,
-  TextDetails,
-  ViewMoreDetails
-} from './style'
+import React, { useEffect, useState } from 'react'
+import { FlatList } from 'react-native'
+import { ScrollItinerary, TextIntroduction, ViewEstablishments } from './style'
+
+import API from '../../services/api'
+import data from '../../data/companies'
 
 import { FrameTopBar } from '../../components/FrameTopBar'
 import { LogoBar } from '../../components/LogoBar'
-import { HorizontalScroll } from '../../components/HorizontalScroll'
+import { Establishment } from '../../components/Establishment'
 
 import { colors } from '../../utilities/colors'
 
-export function Itinerary() {
-  const stablishment = companies
-  console.log(stablishment)
+export function Itinerary(props) {
+  const { answer } = props.route.params
+  console.log(answer)
+
+  const [establishments, setEstablishments] = useState([])
+  const [itinerary, setItinerary] = useState(<TextIntroduction>Carregando...</TextIntroduction>)
+
+  async function getAllEstablishments() {
+    const response = await API.get('/establishment/findAll')
+    setEstablishments(response.data)
+    setItinerary(
+      <FlatList
+        data={response.data}
+        // data={data}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => <Establishment data={item} />}
+      ></FlatList>
+    )
+    console.log(establishments)
+  }
+
+  useEffect(() => {
+    getAllEstablishments()
+  }, [])
 
   return (
     <>
@@ -32,49 +45,14 @@ export function Itinerary() {
 
       <LogoBar></LogoBar>
 
-      <ScrollItinerary showsVerticalScrollIndicator={false}>
-        <TextIntroduction>
-          Alguns estabelecimentos para o seu Rolê...
-        </TextIntroduction>
+      <TextIntroduction>
+        Alguns estabelecimentos para o seu Rolê...
+        {answer}
+      </TextIntroduction>
 
-        {/* <TextItinerary>Primerio Vamos </TextItinerary> */}
+        {itinerary}
 
-        <ViewStablishments>
-          {stablishment.map((item) => {
-            const [showDetails, setShowDetails] = useState(false)
-            return (
-              <ViewStablishment key={item.key}>
-                <TextStablishment>{item.name}</TextStablishment>
-                <TextStablishment>
-                  <Star name='star'></Star>
-                  <Star name='star-half-alt'></Star>
-                </TextStablishment>
-
-                <HorizontalScroll
-                  key={item.key}
-                  nofimg={item.imgs}
-                ></HorizontalScroll>
-
-                <PressableMoreDetails
-                  onPress={() => setShowDetails(!showDetails)}
-                >
-                  <TextMoreDetails>Mais Detalhes</TextMoreDetails>
-                </PressableMoreDetails>
-                {showDetails ? (
-                  <ViewMoreDetails>
-                    <TextDetails>Custo: {item.custo}</TextDetails>
-                    <TextDetails>Address: {item.address}</TextDetails>
-                    <TextDetails>Hours: {item.hours}</TextDetails>
-                  </ViewMoreDetails>
-                ) : null}
-                {stablishment.indexOf(item) < stablishment.length - 1 ? (
-                  <Line></Line>
-                ) : null}
-              </ViewStablishment>
-            )
-          })}
-        </ViewStablishments>
-      </ScrollItinerary>
+      <ViewEstablishments></ViewEstablishments>
     </>
   )
 }

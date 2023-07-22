@@ -23,15 +23,29 @@ export const questions = [
   {
     key: 4,
     category: 'outdoor',
-    question: 'Atividades individuais ou em grupo?',
-    options: ['Ar Livre', 'Indoor'],
+    question: 'Você gosta de ambientes mais abertos ou fechados?',
+    options: ['Abertos', 'Fechado'],
     answer: ''
   },
   {
     key: 5,
-    category: 'timeOfDay',
-    question: 'Atividades diurnas ou noturnas?',
-    options: ['Dia', 'Noite'],
+    category: 'distance',
+    question: 'Qual seria mais ou menos a distância desejada?',
+    options: ['-10 Km', '10 KM - 25 Km', '+ 25 Km'],
+    answer: ''
+  },
+  {
+    key: 6,
+    category: 'transport',
+    question: 'Qual meio de locomoção?',
+    options: ['Transporte Público', 'Transporte Próprio', 'Transporte por aplicativo'],
+    answer: ''
+  },
+  {
+    key: 7,
+    category: 'action',
+    question: 'Qual é a sua prioridade:',
+    options: ['beber', 'Comer', 'Ambos'],
     answer: ''
   }
 ]

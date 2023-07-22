@@ -1,23 +1,21 @@
-import React from "react";
-import { View } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import React from 'react'
+import { useNavigation } from '@react-navigation/native'
 
-import { ViewLogo, BackHome, PressedText, TextLogo } from "./style";
+import { ViewLogo, BackHome, PressedText, TextLogo } from './style'
 
-import Icon from "react-native-vector-icons/Feather";
+import Icon from 'react-native-vector-icons/Feather'
 
 export function LogoBar() {
+  const navigator = useNavigation()
 
-    const navigator = useNavigation()
-
-    return (
-        <ViewLogo>
-            <BackHome onPress={() => navigator.navigate('Home')}>
-                <PressedText><Icon name="chevron-left" size={40}/></PressedText>
-            </BackHome>
-            <TextLogo>
-                Seu Rolê
-            </TextLogo>
-        </ViewLogo>
-    ) 
+  return (
+    <ViewLogo>
+      <BackHome onPress={() => navigator.goBack()}>
+        <PressedText>
+          <Icon name='chevron-left' size={40} />
+        </PressedText>
+      </BackHome>
+      <TextLogo>Seu Rolê</TextLogo>
+    </ViewLogo>
+  )
 }
