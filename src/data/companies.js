@@ -1,14 +1,3 @@
-import API from '../services/api'
-
-async function getAllEstablishments() {
-  try {
-    const res = await API.get('/establishment/findAll')
-    return res.data
-  } catch (error) {
-    console.log('Error' + error)
-  }
-}
-
 const data = [
   {
     id: 1,

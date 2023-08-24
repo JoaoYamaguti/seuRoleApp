@@ -1,80 +1,109 @@
-import { React, useState, useEffect } from 'react'
+/* eslint-disable no-unused-expressions */
+/* eslint-disable multiline-ternary */
+import { React, useEffect, useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { questions } from '../../data/questions'
 
 import { FrameTopBar } from '../../components/FrameTopBar'
 import { Question } from '../../components/Question'
+import { TypesforActions } from '../../components/TypesforActions'
 
 import { LogoBar } from '../../components/LogoBar'
 
 import {
-  PressedNext,
+  TouchButtons,
   PressedText,
   TextQuestions,
   ViewQuestionary,
-  ScrollQuestionary
+  ScrollQuestionary,
+  ViewTouch
 } from './styled'
 
 import { colors } from '../../utilities/colors'
 
-import Icon from 'react-native-vector-icons/Feather'
+import FeatherIcon from 'react-native-vector-icons/Feather'
+import { ResponsiveSize } from '../../utilities/dynamicFont'
+
+const answers = Array(8).fill('')
 
 export function Questionary() {
-  const asks = questions
+  const [roteiro, setRoteiro] = useState(false)
+  const [action, setAction] = useState('')
 
   const navigator = useNavigation()
 
-  const [answerOfAsk, setAnswerOfAsk] = useState('')
-
   const updateAsk = (data) => {
-    setAnswerOfAsk(data)
+    if (data !== null) {
+      const index = data.key - 1
+      index < 7 ? (questions[index].answer = data.answer) : null
+      answers[index] = data.answer
+      if (data.category === 'action') {
+        setAction(data.answer)
+      }
+    }
+    console.log(answers)
   }
 
-  let answers = []
   useEffect(() => {
-    if (answerOfAsk !== null) {
-      const index = answerOfAsk.key - 1
-      asks[index] = answerOfAsk
-      answers = []
-      asks.forEach((e) => answers.push(e.answer))
-    }
-  }, [answerOfAsk])
+    !roteiro ? answers.splice(7, 1) : null
+  }, [roteiro])
 
   return (
-    <ViewQuestionary>
+    <>
       <FrameTopBar color={colors.darkblue}></FrameTopBar>
       <LogoBar></LogoBar>
 
-      <TextQuestions>
-        Hora de responder algumas perguntas para criarmos um roteiro para seu
-        próximo rolê.
-      </TextQuestions>
+      <ViewQuestionary>
+        <TextQuestions>
+          Hora de responder algumas perguntas para criarmos um roteiro para seu
+          próximo rolê.
+        </TextQuestions>
 
-      <ScrollQuestionary showsVerticalScrollIndicator={false}>
-
-        {asks.map((item) => {
-          return (
-            <Question
-              key={item.key}
-              ask={item}
-              handleAsks={updateAsk}
-            ></Question>
-          )
-        })}
-
-        <PressedNext
-          onPress={() =>
-            navigator.navigate('Itinerary', {
-              answer: answers
-            })
-          }
-        >
-          <PressedText>
-            Finalizar
-            <Icon name='chevron-right' size={20} />
-          </PressedText>
-        </PressedNext>
-      </ScrollQuestionary>
-    </ViewQuestionary>
+        {!roteiro ? (
+          <ScrollQuestionary
+            showsVerticalScrollIndicator={false}
+            data={questions}
+            keyExtractor={(item) => item.key}
+            renderItem={({ item }) => (
+              <Question ask={item} handleAsks={updateAsk} />
+            )}
+          />
+        ) : (
+          <TypesforActions action={action} handleAsks={updateAsk} />
+        )}
+        <ViewTouch>
+          <TouchButtons
+            onPress={() => {
+              action || action === 'indiferente'
+                ? setRoteiro(!roteiro)
+                : alert('Preencha o que você gostaria de fazer no seu rolê...')
+            }}
+          >
+            {!roteiro ? (
+              <PressedText>Roteiro</PressedText>
+            ) : (
+              <>
+                <PressedText>
+                  <FeatherIcon name='chevrons-left' size={ResponsiveSize(22)} />
+                </PressedText>
+                <PressedText>Voltar</PressedText>
+              </>
+            )}
+          </TouchButtons>
+          <TouchButtons
+            onPress={() =>
+              navigator.navigate('Itinerary', {
+                answer: answers
+              })
+            }
+          >
+            <PressedText>Finalizar </PressedText>
+            <PressedText>
+              <FeatherIcon name='chevrons-right' size={ResponsiveSize(22)} />
+            </PressedText>
+          </TouchButtons>
+        </ViewTouch>
+      </ViewQuestionary>
+    </>
   )
 }

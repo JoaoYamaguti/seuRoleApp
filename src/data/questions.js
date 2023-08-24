@@ -3,28 +3,28 @@ export const questions = [
     key: 1,
     category: 'groupSize',
     question: 'Sairá sozinho ou irá com mais pessoas?',
-    options: ['Individual', 'Casal', 'Grupo'],
+    options: ['Individual', 'Casal', 'Grupo', 'Indiferente'],
     answer: ''
   },
   {
     key: 2,
     category: 'calmdown',
-    question: 'Está preferindo um ambiente:',
-    options: ['Tranquilas', 'musica ambiente', 'Agitado'],
+    question: 'Está preferindo um ambiente?',
+    options: ['Tranquilo', 'Musica Ambiente', 'Agitado'],
     answer: ''
   },
   {
     key: 3,
     category: 'budget',
     question: 'Pretende gastar quanto?',
-    options: ['- R$ 75,00', 'R$ 75 – R$ 200', '+ R$ 200,00'],
+    options: ['Baixo', 'Medio', 'Alto'],
     answer: ''
   },
   {
     key: 4,
     category: 'outdoor',
     question: 'Você gosta de ambientes mais abertos ou fechados?',
-    options: ['Abertos', 'Fechado'],
+    options: ['Ambiente Aberto', 'Ambiente Fechado'],
     answer: ''
   },
   {
@@ -38,14 +38,38 @@ export const questions = [
     key: 6,
     category: 'transport',
     question: 'Qual meio de locomoção?',
-    options: ['Transporte Público', 'Transporte Próprio', 'Transporte por aplicativo'],
+    options: [
+      'Transporte Público',
+      'Transporte Próprio',
+      'Transporte por aplicativo'
+    ],
     answer: ''
   },
   {
     key: 7,
     category: 'action',
-    question: 'Qual é a sua prioridade:',
-    options: ['beber', 'Comer', 'Ambos'],
+    question: 'O que gostaria de fazer?',
+    options: ['Beber', 'Comer', 'Visitar'],
     answer: ''
   }
 ]
+
+export const types = {
+  key: 8,
+  question: 'Tipo de Estabelecimentos:',
+  types: [
+    {
+      action: 'Comer',
+      options: ['Japoneis', 'Churrasco', 'Mexicano']
+    },
+    {
+      action: 'Beber',
+      options: ['Barzinho']
+    },
+    {
+      action: 'Visitar',
+      options: ['Parque']
+    }
+  ],
+  answer: ''
+}

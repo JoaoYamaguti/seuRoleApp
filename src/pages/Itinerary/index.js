@@ -3,10 +3,9 @@
 /* eslint-disable multiline-ternary */
 import React, { useEffect, useState } from 'react'
 import { FlatList } from 'react-native'
-import { ScrollItinerary, TextIntroduction, ViewEstablishments } from './style'
+import { TextIntroduction, ViewEstablishments } from './style'
 
 import API from '../../services/api'
-import data from '../../data/companies'
 
 import { FrameTopBar } from '../../components/FrameTopBar'
 import { LogoBar } from '../../components/LogoBar'
@@ -41,18 +40,18 @@ export function Itinerary(props) {
 
   return (
     <>
-      <FrameTopBar color={colors.darkblue}></FrameTopBar>
+      <FrameTopBar color={colors.darkblue}/>
 
-      <LogoBar></LogoBar>
+      <LogoBar/>
 
       <TextIntroduction>
-        Alguns estabelecimentos para o seu Rolê...
+        Alguns estabelecimentos para o Seu Rolê...
         {answer}
       </TextIntroduction>
 
         {itinerary}
 
-      <ViewEstablishments></ViewEstablishments>
+      <ViewEstablishments/>
     </>
   )
 }

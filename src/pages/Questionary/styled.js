@@ -4,35 +4,41 @@ import { colors } from '../../utilities/colors.js'
 
 export const ViewQuestionary = styled.View`
   width: 100%;
+  padding: 2%;
   flex: 1;
-  gap: 0;
+  gap: 5px;
 
   flex-flow: column nowrap;
   justify-content: space-between;
 `
 
 export const TextQuestions = styled.Text`
-  margin: 5% 3% 5% 3%;
   font-size: ${ResponsiveSize(19)}px;
   text-align: justify;
 `
 
-export const ScrollQuestionary = styled.ScrollView`
-  margin: 0 3% 3% 3%;
-  border: 0;
-  padding: 0;
+export const ScrollQuestionary = styled.FlatList``
+
+export const ViewTouch = styled.View`
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
 `
 
-export const PressedNext = styled.Pressable`
-  width: 100%;
+export const TouchButtons = styled.TouchableOpacity`
+  flex: 1;
 
   padding: 10px 20px;
   border-radius: 14px;
 
+  flex-flow: row nowrap;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
 
   background-color: ${colors.darkblue};
+  color: white;
 `
 
 export const PressedText = styled.Text`

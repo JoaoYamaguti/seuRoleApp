@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { React, useState } from 'react'
+import { types } from '../../data/questions'
 
 import {
   ViewQuestion,
@@ -11,22 +12,33 @@ import {
   TouchRadio
 } from './styled'
 
-export function Question({ ask, handleAsks }) {
-  const [value, setValue] = useState(ask.answer)
+export function TypesforActions({ action, handleAsks }) {
+  const [value, setValue] = useState('')
+
+  const handleOptions = () => {
+    let res = []
+    types.types.forEach((item) => {
+      if (item.action === action) {
+        res = item.options
+      }
+    })
+    return res
+  }
+
+  const options = handleOptions()
 
   return (
     <ViewQuestion>
-      <TextQuestion>{ask.question}
-      </TextQuestion>
+      <TextQuestion>{types.question}</TextQuestion>
 
-      {ask.options.map((item, index) => {
+      {options.map((item, index) => {
         return (
           <TouchRadio
             key={index}
             onPress={() => {
               setValue(item)
-              ask.answer = item
-              handleAsks(ask)
+              types.answer = item
+              handleAsks(types)
             }}
           >
             <RadioContent>

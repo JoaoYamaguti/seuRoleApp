@@ -13,12 +13,22 @@ import {
   TextDetail,
   ViewDetail,
   ViewDetailValue,
-  TextDetailLabel
+  TextDetailLabel,
+  ViewStars
 } from './style'
+import FontAwesome5Icon from 'react-native-vector-icons/Fontisto'
 
 export function Establishment({ data }) {
-  console.log(data)
+  const listStar = []
   const [showDetails, setShowDetails] = useState(false)
+
+  for (let index = data.rate; index > 0; index--) {
+    if (index >= 1) {
+      listStar.push(<FontAwesome5Icon name='star' key={index} />)
+    } else if (index < 1) {
+      listStar.push(<FontAwesome5Icon name='star-half' key={index} />)
+    }
+  }
 
   return (
     <ViewEstablishment>
@@ -26,10 +36,12 @@ export function Establishment({ data }) {
 
       <TextEstablishment>{data.name}</TextEstablishment>
 
-      {/* <TextEstablishment>
-        <Star name='star'></Star>
-        <Star name='star-half-alt'></Star>
-      </TextEstablishment> */}
+      <ViewStars>
+        {listStar.map((e) => {
+          return e
+        })}
+      </ViewStars>
+
       <ScrollImgs horizontal={true} showsHorizontalScrollIndicator={false}>
         {data.images.map(({ path }, index) => {
           return <ImageEstablishment key={index} source={{ uri: path }} />
@@ -47,9 +59,7 @@ export function Establishment({ data }) {
           </ViewDetail>
           <ViewDetail>
             <TextDetailLabel>Address:</TextDetailLabel>
-            <ViewDetailValue>
-              <TextDetail>{data.address}</TextDetail>
-            </ViewDetailValue>
+            <TextDetail>{data.address}</TextDetail>
           </ViewDetail>
           <ViewDetail>
             <TextDetailLabel>Hours: </TextDetailLabel>
