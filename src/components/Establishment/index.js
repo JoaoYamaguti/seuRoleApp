@@ -14,7 +14,8 @@ import {
   ViewDetail,
   ViewDetailValue,
   TextDetailLabel,
-  ViewStars
+  ViewStars,
+  TextColorStars
 } from './style'
 import FontAwesome5Icon from 'react-native-vector-icons/Fontisto'
 
@@ -24,9 +25,17 @@ export function Establishment({ data }) {
 
   for (let index = data.rate; index > 0; index--) {
     if (index >= 1) {
-      listStar.push(<FontAwesome5Icon name='star' key={index} />)
-    } else if (index < 1) {
-      listStar.push(<FontAwesome5Icon name='star-half' key={index} />)
+      listStar.push(
+        <TextColorStars key={index}>
+          <FontAwesome5Icon name='star'/>
+        </TextColorStars>
+      )
+    } else {
+      listStar.push(
+        <TextColorStars key={index}>
+          <FontAwesome5Icon name='star-half'/>
+        </TextColorStars>
+      )
     }
   }
 

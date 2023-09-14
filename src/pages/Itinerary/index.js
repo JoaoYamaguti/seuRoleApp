@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable multiline-ternary */
-import React, { useEffect, useState } from 'react'
-import { FlatList } from 'react-native'
-import { TextIntroduction, ViewEstablishments } from './style'
+import React, { useEffect, useState, useContext } from 'react'
+import { FlatList, Text } from 'react-native'
+import { ViewEtinerary, TextIntroduction, ButtonSugest } from './style'
 
-import API from '../../services/api'
+import { EstablishmentsContext } from '../../contexts/establishments'
 
 import { FrameTopBar } from '../../components/FrameTopBar'
 import { LogoBar } from '../../components/LogoBar'
@@ -15,43 +15,61 @@ import { colors } from '../../utilities/colors'
 
 export function Itinerary(props) {
   const { answer } = props.route.params
-  console.log(answer)
+  const { establishments } = useContext(EstablishmentsContext)
 
-  const [establishments, setEstablishments] = useState([])
-  const [itinerary, setItinerary] = useState(<TextIntroduction>Carregando...</TextIntroduction>)
+  const [estabsToRender, setEstabsToRender] = useState([])
+  const [quantyToRender, setQuantyToRender] = useState(0)
+  const [helper, setHelper] = useState([])
 
-  async function getAllEstablishments() {
-    const response = await API.get('/establishment/findAll')
-    setEstablishments(response.data)
-    setItinerary(
-      <FlatList
-        data={response.data}
-        // data={data}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => <Establishment data={item} />}
-      ></FlatList>
-    )
-    console.log(establishments)
+  function rankingEstablishments() {
+    establishments.forEach((e) => {
+      const categoryList = []
+      e.categories.forEach((cats) => {
+        categoryList.push(cats.options)
+      })
+      const recomendation = categoryList.filter((cat) =>
+        answer.includes(cat)
+      ).length
+      const newEstab = { ...e, recomendation }
+      const novoArray = [...helper, newEstab]
+      setHelper(novoArray)
+    //   e.recomendation = recomendation
+    //   establishments.sort((a, b) => b.recomendation - a.recomendation)
+    })
+    helper.sort((a, b) => b.recomendation - a.recomendation)
+    setQuantyToRender(3)
   }
 
   useEffect(() => {
-    getAllEstablishments()
-  }, [])
+    establishments && rankingEstablishments()
+  }, [establishments])
+  useEffect(() => {
+    establishments && setEstabsToRender(establishments.slice(0, quantyToRender))
+  }, [quantyToRender])
 
   return (
-    <>
-      <FrameTopBar color={colors.darkblue}/>
+    <ViewEtinerary>
+      <FrameTopBar />
+      <LogoBar />
+      <TextIntroduction>Que tal essas opções?</TextIntroduction>
 
-      <LogoBar/>
+      {helper.length > 0 ? (
+        <FlatList
+          data={estabsToRender}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => <Establishment data={item} />}
+          showsVerticalScrollIndicator={false}
+        />
+      ) : (
+        <TextIntroduction>Carregando...</TextIntroduction>
+      )}
 
-      <TextIntroduction>
-        Alguns estabelecimentos para o Seu Rolê...
-        {answer}
-      </TextIntroduction>
-
-        {itinerary}
-
-      <ViewEstablishments/>
-    </>
+      {console.log(helper)}
+      {quantyToRender < helper.length ? (
+        <ButtonSugest onPress={() => setQuantyToRender(quantyToRender + 1)}>
+          <Text>Sugerir Mais</Text>
+        </ButtonSugest>
+      ) : null}
+    </ViewEtinerary>
   )
 }

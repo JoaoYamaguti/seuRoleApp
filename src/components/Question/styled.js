@@ -11,6 +11,7 @@ export const TextQuestion = styled.Text`
   font-size: ${ResponsiveSize(20)}px;
   text-align: justify;
   text-transform: none;
+  color: ${colors.font};
 `
 
 export const TouchRadio = styled.TouchableOpacity`
@@ -28,7 +29,7 @@ export const Radio = styled.View`
   width: 30px;
   height: 30px;
   border-radius: 100px;
-  border: 3px solid ${colors.darkblue};
+  border: 3px solid ${colors.optionsRing};
   justify-content: center;
   align-items: center;
 `
@@ -37,9 +38,10 @@ export const RadioFill = styled.View`
   height: 15px;
   border-radius: 100px;
 
-  background-color: ${colors.darkblue};
+  background-color: ${colors.optionsFill};
 `
 export const TextRadio = styled.Text`
     font-size: ${ResponsiveSize(16)}px;
     text-transform: capitalize;
+    color: ${colors.font};
 `

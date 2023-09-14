@@ -10,11 +10,14 @@ export const ViewQuestionary = styled.View`
 
   flex-flow: column nowrap;
   justify-content: space-between;
+
+  background-color: ${colors.fundo};
 `
 
 export const TextQuestions = styled.Text`
   font-size: ${ResponsiveSize(19)}px;
   text-align: justify;
+  color: ${colors.font};
 `
 
 export const ScrollQuestionary = styled.FlatList``
@@ -37,7 +40,7 @@ export const TouchButtons = styled.TouchableOpacity`
   align-items: center;
   justify-content: space-evenly;
 
-  background-color: ${colors.darkblue};
+  background-color: ${colors.buttonFinalizar};
   color: white;
 `
 

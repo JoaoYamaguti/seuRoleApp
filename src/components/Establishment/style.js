@@ -19,17 +19,22 @@ export const Line = styled.View`
 
   margin: auto;
 
-  background-color: #2a3e59;
+  background-color: ${colors.details};
 `
 
 export const TextEstablishment = styled.Text`
   font-size: ${ResponsiveSize(18)}px;
   text-transform: capitalize;
+  color: white;
 `
 
 export const ViewStars = styled.View`
   display: flex;
   flex-flow: row;
+  color: white;
+`
+export const TextColorStars = styled.Text`
+  color: white;
 `
 
 export const ScrollImgs = styled.ScrollView`
@@ -52,23 +57,26 @@ export const PressableMoreDetails = styled.Pressable`
   align-items: center;
 `
 export const TextMoreDetails = styled.Text`
-  color: ${colors.darkblue};
   text-decoration: underline;
   font-size: ${ResponsiveSize(15)}px;
+  color: ${colors.details};
 `
 export const ViewMoreDetails = styled.View`
   flex-flow: column nowrap;
   align-items: stretch;
+  gap: 5px;
 `
 export const TextDetailLabel = styled.Text`
   flex: 1;
   width: 100px;
   overflow: scroll;
+  color: white;
 `
 export const TextDetail = styled.Text`
   flex: 3;
   text-transform: none;
   text-align: justify;
+  color: white;
 `
 export const ViewDetail = styled.View`
   font-size: ${ResponsiveSize(15)}px;

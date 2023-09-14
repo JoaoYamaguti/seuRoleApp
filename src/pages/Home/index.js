@@ -13,7 +13,7 @@ export function Home() {
   return (
     <ViewHome>
       <LinearGradient
-        colors={['#54728C', '#2A3E59']}
+        colors={['#5DE0E6', '#5DE0E6', '#004AAD', '#004299']}
         style={{
           position: 'absolute',
           left: 0,
@@ -26,14 +26,12 @@ export function Home() {
       <FrameTopBar/>
 
       <ViewLogo>
-        <ImageHome source={require('../../imgs/logo.png')}></ImageHome>
-        <Text>Duvidas na hora de escolher um lugar para sair?</Text>
-        <Text>Nós te ajudamos</Text>
+        <ImageHome source={require('../../imgs/logoSemFundo.png')}></ImageHome>
       </ViewLogo>
 
       <PressStart onPress={() => navigation.navigate('Questions')}>
         <TextStart>
-          Let's Go <Icon name='chevron-right' size={30} />
+          Partiu! <Icon name='chevron-right' size={30} />
         </TextStart>
       </PressStart>
     </ViewHome>

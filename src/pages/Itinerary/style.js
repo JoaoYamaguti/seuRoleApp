@@ -4,7 +4,8 @@ import { colors } from '../../utilities/colors'
 import { ResponsiveSize } from '../../utilities/dynamicFont'
 
 export const ViewEtinerary = styled.View`
-
+  background-color: ${colors.fundo};
+  flex: 1;
 `
 
 export const ScrollItinerary = styled.ScrollView`
@@ -12,10 +13,11 @@ export const ScrollItinerary = styled.ScrollView`
 `
 
 export const TextIntroduction = styled.Text`
-  padding:  15px 15px;
+  padding: 15px 15px;
+  color: white;
 
   font-size: ${ResponsiveSize(22)}px;
-  text-align: justify;
+  text-align: center;
 `
 
 export const TextItinerary = styled.Text`
@@ -23,8 +25,13 @@ export const TextItinerary = styled.Text`
 
   font-size: ${ResponsiveSize(20)}px;
 `
-
-export const ViewEstablishments = styled.View`
-  border: solid 1px black;
-  border-radius: 14px;
+export const ButtonSugest = styled.TouchableOpacity`
+  flex: 1;
+  background-color: ${colors.buttonFinalizar};
+  width: 150px;
+  height: 40px;
+  margin-bottom: 15px;
+  margin-top: 10px;
+  margin: auto;
+  text-align: center;
 `

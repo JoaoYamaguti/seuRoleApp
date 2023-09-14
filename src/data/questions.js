@@ -49,7 +49,7 @@ export const questions = [
     key: 7,
     category: 'action',
     question: 'O que gostaria de fazer?',
-    options: ['Beber', 'Comer', 'Visitar'],
+    options: ['Beber', 'Comer', 'Visitar', 'Laser'],
     answer: ''
   }
 ]
@@ -69,6 +69,10 @@ export const types = {
     {
       action: 'Visitar',
       options: ['Parque']
+    },
+    {
+      action: 'Laser',
+      options: ['Clube']
     }
   ],
   answer: ''

@@ -13,7 +13,7 @@ export const ViewLogo = styled.View`
 `
 
 export const ImageHome = styled.Image`
-  height: 300px;
+  height: 140px;
   resizeMode: contain;
 
 `
