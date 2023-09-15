@@ -80,7 +80,7 @@ export function Questionary() {
             }}
           >
             {!roteiro ? (
-              <PressedText>Roteiro</PressedText>
+              <PressedText>Me Surpreenda!</PressedText>
             ) : (
               <>
                 <PressedText>

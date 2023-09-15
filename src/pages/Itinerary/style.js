@@ -25,8 +25,11 @@ export const TextItinerary = styled.Text`
 
   font-size: ${ResponsiveSize(20)}px;
 `
+export const ListEstablishments = styled.FlatList`
+ background-color: red;
+`
+
 export const ButtonSugest = styled.TouchableOpacity`
-  flex: 1;
   background-color: ${colors.buttonFinalizar};
   width: 150px;
   height: 40px;
